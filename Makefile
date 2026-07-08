@@ -1,19 +1,12 @@
 all: EBOOT.PBP
 TARGET = engine
-PSP_EBOOT_TITLE = Umdra Engine
+PSP_EBOOT_TITLE = Umdra_Reload
 
 OBJS = \
 src/main.o \
 src/core/engine.o \
 src/graphics/renderer.o \
-src/graphics/texture.o \
-src/input/input.o \
-src/game/mygame.o \
-src/audio/audio.o \
-src/core/time.o \
-src/core/entity.o \
-src/physics/collision.o \
-src/graphics/objloader.o 
+src/input/input.o 
 
 CFLAGS = -O2 -G0 -Wall -Iinclude
 CXXFLAGS = $(CFLAGS)
