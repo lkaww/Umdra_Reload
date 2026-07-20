@@ -1,6 +1,11 @@
 #include "core/engine.h"
+#include "graphics/vertex.h"
 
 #include <pspctrl.h>
+#include <pspgu.h>
+
+#include "graphics/texture.h"
+#include "graphics/textureloader.h"
 
 void Engine::Init()
 {
@@ -16,7 +21,7 @@ void Engine::Run()
     {
         input.Update();
 
-        if (input.IsPressed(PSP_CTRL_HOME))
+        if (input.IsPressed(PSP_CTRL_START))
             running = false;
 
         renderer.BeginFrame();

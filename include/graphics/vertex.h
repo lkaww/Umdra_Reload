@@ -1,7 +1,10 @@
 #pragma once
 
+#include <cstdint>
+
 struct Vertex
 {
-    unsigned int color;
+    float u, v;
+    uint32_t colour;
     float x, y, z;
 };

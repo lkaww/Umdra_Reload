@@ -1,6 +1,6 @@
 #pragma once
 
-#include "graphics/vertex.h"
+#include "graphics/texture.h"
 
 class Renderer
 {
@@ -8,8 +8,8 @@ public:
     void Init();
     void BeginFrame();
 
-    void Draw(const Vertex* vertex);
     void DrawText(const char* text);
+    void DrawTexture(Texture * texture, float x, float y, float w, float h);
 
     void EndFrame();
     void Shutdown();

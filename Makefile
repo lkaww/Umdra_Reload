@@ -6,11 +6,12 @@ OBJS = \
 src/main.o \
 src/core/engine.o \
 src/graphics/renderer.o \
+src/graphics/textureloader.o \
 src/input/input.o 
 
 CFLAGS = -O2 -G0 -Wall -Iinclude
 CXXFLAGS = $(CFLAGS)
 
-LIBS = -lpspgu -lpspgum -lpspdisplay -lpspctrl -lpspaudio -lpng -lz -lstdc++ -lm
+LIBS = -lpspgu -lpspdisplay -lpspctrl -lpng -lz -lstdc++ -lm
 
 include $(PSPSDK)/lib/build.mak
