@@ -3,7 +3,7 @@
 #include "graphics/renderer.h"
 #include "input/input.h"
 #include "graphics/texture.h"
-#include "graphics/textureloader.h"
+#include "loaders/textureloader.h"
 
 class Engine
 {
@@ -14,9 +14,11 @@ public:
 
 private:
     bool running;    
+
     Renderer renderer;
     Input input;
     TextureLoader textureLoader;
 
-    Texture * playerTexture;
+    Texture* playerTexture;
+    bool isDraw;
 };
