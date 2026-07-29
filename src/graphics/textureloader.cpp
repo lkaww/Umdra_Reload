@@ -5,7 +5,7 @@
 
 #include <psputils.h>
 
-#include "graphics/textureloader.h"
+#include "loaders/textureloader.h"
 
 Texture * TextureLoader::LoadTexture(const char * filename) {
     Texture * texture = (Texture *) calloc(1, sizeof(Texture));
