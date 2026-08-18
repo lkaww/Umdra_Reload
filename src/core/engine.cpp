@@ -6,6 +6,7 @@
 
 #include "graphics/texture.h"
 #include "loaders/textureloader.h"
+#include "graphics/animation.h"
 
 void Engine::Init()
 {
@@ -13,8 +14,6 @@ void Engine::Init()
 
     renderer.Init();
     input.Init();
-
-    playerTexture = textureLoader.LoadTexture("assets/test.png");
     isDraw = true;
 }
 

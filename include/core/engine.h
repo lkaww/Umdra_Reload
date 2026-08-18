@@ -19,6 +19,6 @@ private:
     Input input;
     TextureLoader textureLoader;
 
-    Texture* playerTexture;
+    Texture playerTexture;
     bool isDraw;
 };

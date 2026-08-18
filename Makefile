@@ -7,6 +7,7 @@ src/main.o \
 src/core/engine.o \
 src/graphics/renderer.o \
 src/loaders/textureloader.o \
+src/graphics/animation.o \
 src/input/input.o 
 
 CFLAGS = -O2 -G0 -Wall -Iinclude
