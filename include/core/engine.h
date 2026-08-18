@@ -18,7 +18,4 @@ private:
     Renderer renderer;
     Input input;
     TextureLoader textureLoader;
-
-    Texture playerTexture;
-    bool isDraw;
 };

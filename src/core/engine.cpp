@@ -6,7 +6,6 @@
 
 #include "graphics/texture.h"
 #include "loaders/textureloader.h"
-#include "graphics/animation.h"
 
 void Engine::Init()
 {
@@ -14,7 +13,6 @@ void Engine::Init()
 
     renderer.Init();
     input.Init();
-    isDraw = true;
 }
 
 void Engine::Run()
@@ -23,19 +21,10 @@ void Engine::Run()
     {
         input.Update();
 
-        if (input.IsPressed(PSP_CTRL_START))
+        if (input.IsPressed(PSP_CTRL_HOME))
             running = false;
         
         renderer.BeginFrame();
-
-        if (isDraw)
-            renderer.DrawTexture(playerTexture, 240 - playerTexture->width / 2, 136 - playerTexture->height / 2, playerTexture->width, playerTexture->height);
-        
-        if (input.IsPressed(PSP_CTRL_CROSS))
-        {
-            isDraw = false;
-            textureLoader.UnloadTexture(playerTexture);
-        }
         
         renderer.EndFrame();
     }
