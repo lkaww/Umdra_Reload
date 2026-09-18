@@ -1,6 +1,9 @@
 #include <pspdisplay.h>
 #include <pspgu.h>
 #include <pspdebug.h>
+#include <pspkernel.h>
+
+#include <vector>
 
 #include "graphics/renderer.h"
 #include "graphics/texture.h"
@@ -46,13 +49,17 @@ void Renderer::BeginFrame()
     sceGuClearDepth(0x0000);
 }
 
-void Renderer::DrawText(const char* text)
+void Renderer::DrawAnimation(Animation animation, float x, float y)
 {
-    pspDebugScreenClear();
-    pspDebugScreenPrintf(text);
+    for (size_t i = 0; i < animation.sprites.size(); ++i) 
+    {
+        Texture* sprite = animation.GetCurrentFrame();
+
+        DrawTexture(sprite, x, y, sprite->width, sprite->height);
+    }
 }
 
-void Renderer::DrawTexture(Texture * texture, float x, float y, float w, float h)
+void Renderer::DrawTexture(Texture* texture, float x, float y, float w, float h)
 {
     static Vertex vertices[2];
 
@@ -77,6 +84,12 @@ void Renderer::DrawTexture(Texture * texture, float x, float y, float w, float h
     sceGuEnable(GU_TEXTURE_2D); 
     sceGuDrawArray(GU_SPRITES, GU_COLOR_8888 | GU_TEXTURE_32BITF | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 2, 0, vertices);
     sceGuDisable(GU_TEXTURE_2D);
+}
+
+void Renderer::DrawText(const char* text)
+{
+    pspDebugScreenClear();
+    pspDebugScreenPrintf(text);
 }
 
 void Renderer::EndFrame()

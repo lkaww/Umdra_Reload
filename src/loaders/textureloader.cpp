@@ -9,16 +9,22 @@
 
 Texture* TextureLoader::LoadTexture(const char* filename) 
 {
-    Texture* texture = (Texture *) calloc(1, sizeof(Texture));
+    Texture* texture = (Texture*) calloc(1, sizeof(Texture));
 
-    texture->data = (uint32_t *) stbi_load(filename, &(texture->width), &(texture->height), NULL, STBI_rgb_alpha);
+    texture->data = (uint32_t*) stbi_load(filename, &(texture->width), &(texture->height), NULL, STBI_rgb_alpha);
+
+    if (!texture->data)
+    {
+        texture->failureReason = stbi_failure_reason();
+        return texture;
+    }
     
     sceKernelDcacheWritebackInvalidateAll();
 
     return texture;
 }
 
-void TextureLoader::UnloadTexture(const Texture* texture)
+void TextureLoader::UnloadTexture(Texture* texture)
 {
     stbi_image_free(texture->data);
 }

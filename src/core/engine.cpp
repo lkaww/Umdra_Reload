@@ -4,6 +4,7 @@
 #include <pspctrl.h>
 #include <pspgu.h>
 
+#include "graphics/animation.h"
 #include "graphics/texture.h"
 #include "loaders/textureloader.h"
 
@@ -17,6 +18,8 @@ void Engine::Init()
 
 void Engine::Run()
 {
+    float deltaTime = 0.0166f;
+
     while (running)
     {
         input.Update();

@@ -5,5 +5,6 @@
 struct Texture
 {
     int width, height;
-    uint32_t * data;
+    uint32_t* data;
+    const char* failureReason;
 };

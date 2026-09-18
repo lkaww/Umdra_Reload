@@ -1,17 +1,14 @@
-
 #include "input/input.h"
-
-SceCtrlData Input::currentPad = {};
-SceCtrlData Input::previousPad = {};
 
 void Input::Init()
 {
     sceCtrlSetSamplingCycle(0);
     sceCtrlSetSamplingMode(PSP_CTRL_MODE_ANALOG);
 
-    sceCtrlReadBufferPositive(&currentPad, 1);
+    currentPad = {};
+    previousPad = {};
 
-    previousPad = currentPad;
+    sceCtrlReadBufferPositive(&currentPad, 1);
     deadZone = 15.0f;
 }
 

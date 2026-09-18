@@ -16,8 +16,8 @@ public:
     int GetAnalogY();
 
 private:
-    static SceCtrlData currentPad;
-    static SceCtrlData previousPad;
+    SceCtrlData currentPad;
+    SceCtrlData previousPad;
 
     float deadZone;
 };

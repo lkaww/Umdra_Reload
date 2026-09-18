@@ -1,9 +1,11 @@
 #pragma once
 
 #include "graphics/renderer.h"
-#include "input/input.h"
 #include "graphics/texture.h"
+#include "graphics/animation.h"
+#include "input/input.h"
 #include "loaders/textureloader.h"
+
 
 class Engine
 {

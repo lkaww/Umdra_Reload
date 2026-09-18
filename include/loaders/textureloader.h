@@ -6,5 +6,5 @@ class TextureLoader
 {
 public:
     Texture* LoadTexture(const char* filename);
-    void UnloadTexture(const Texture* texture);
+    void UnloadTexture(Texture* texture);
 };
