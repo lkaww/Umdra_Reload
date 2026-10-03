@@ -14,6 +14,8 @@ void Engine::Init()
 
     renderer.Init();
     input.Init();
+
+    //YOUR INIT CODE HERE//
 }
 
 void Engine::Run()
@@ -28,6 +30,8 @@ void Engine::Run()
             running = false;
         
         renderer.BeginFrame();
+
+        //YOUR RENDER CODE HERE//
         
         renderer.EndFrame();
     }

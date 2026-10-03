@@ -15,20 +15,52 @@ void Renderer::Init()
 {
     sceGuInit();
 
-    sceGuStart(GU_DIRECT, list);
+    sceGuStart(
+        GU_DIRECT, 
+        list
+    );
 
-    sceGuDrawBuffer(GU_PSM_8888, (void*)0, 512);
-    sceGuDispBuffer(480, 272, (void*)0x88000, 512);
-    sceGuDepthBuffer((void*)0x110000, 512);
+    sceGuDrawBuffer(
+        GU_PSM_8888, 
+        (void*)0,
+        512
+    );
 
-    //sceGuOffset(2048 - 240, 2048 - 136);
-    sceGuViewport(2048, 2048, 480, 272);
+    sceGuDispBuffer(
+        480, 
+        272, 
+        (void*)0x88000, 
+        512
+    );
+
+    sceGuDepthBuffer(
+        (void*)0x110000, 
+        512
+    );
+
+    sceGuViewport(
+        2048, 
+        2048, 
+        480, 
+        272
+    );
+
+    
 
     sceGuEnable(GU_SCISSOR_TEST);
-    sceGuScissor(0, 0, 480, 272);
+    sceGuScissor(
+        0, 
+        0, 
+        480,
+        272
+    );
 
     sceGuFinish();
-    sceGuSync(0, 0);
+
+    sceGuSync(
+        0,
+        0
+    );
 
     pspDebugScreenInit();
 
@@ -38,9 +70,13 @@ void Renderer::Init()
 
 void Renderer::BeginFrame()
 {
-    sceGuStart(GU_DIRECT, list);
+    sceGuStart(
+        GU_DIRECT, 
+        list
+    );
 
     sceGuClearColor(0x000000);
+
     sceGuClear(
         GU_COLOR_BUFFER_BIT |
         GU_DEPTH_BUFFER_BIT
@@ -55,7 +91,13 @@ void Renderer::DrawAnimation(Animation animation, float x, float y)
     {
         Texture* sprite = animation.GetCurrentFrame();
 
-        DrawTexture(sprite, x, y, sprite->width, sprite->height);
+        DrawTexture(
+            sprite, 
+            x, 
+            y, 
+            sprite->width, 
+            sprite->height
+        );
     }
 }
 
@@ -77,13 +119,50 @@ void Renderer::DrawTexture(Texture* texture, float x, float y, float w, float h)
     vertices[1].y = y + h;
     vertices[1].z = 0.0f;
 
-    sceGuTexMode(GU_PSM_8888, 0, 0, GU_FALSE);
-    sceGuTexFunc(GU_TFX_REPLACE, GU_TCC_RGB);
-    sceGuTexImage(0, texture->width, texture->height, texture->width, texture->data);
+    sceGuTexMode(GU_PSM_8888, 
+        0, 
+        0, 
+        GU_FALSE
+    );
+    
+    sceGuTexFunc(
+        GU_TFX_REPLACE, 
+        GU_TCC_RGBA
+    );
+
+    sceGuEnable(GU_BLEND);
+
+    sceGuBlendFunc(
+        GU_ADD, 
+        GU_SRC_ALPHA, 
+        GU_ONE_MINUS_SRC_ALPHA, 
+        0, 
+        0
+    );
+
+    sceGuTexImage(
+        0, 
+        texture->width, 
+        texture->height,
+        texture->width, 
+        texture->data
+    );
 
     sceGuEnable(GU_TEXTURE_2D); 
-    sceGuDrawArray(GU_SPRITES, GU_COLOR_8888 | GU_TEXTURE_32BITF | GU_VERTEX_32BITF | GU_TRANSFORM_2D, 2, 0, vertices);
+
+    sceGuDrawArray(
+        GU_SPRITES, 
+        GU_COLOR_8888 | 
+        GU_TEXTURE_32BITF | 
+        GU_VERTEX_32BITF | 
+        GU_TRANSFORM_2D, 
+        2, 
+        0, 
+        vertices
+    );
+
     sceGuDisable(GU_TEXTURE_2D);
+    sceGuDisable(GU_BLEND);
 }
 
 void Renderer::DrawText(const char* text)
@@ -95,7 +174,11 @@ void Renderer::DrawText(const char* text)
 void Renderer::EndFrame()
 {
     sceGuFinish();
-    sceGuSync(0, 0);
+
+    sceGuSync(
+        0, 
+        0
+    );
 
     sceDisplayWaitVblankStart();
     sceGuSwapBuffers();

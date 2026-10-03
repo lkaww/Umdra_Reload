@@ -20,4 +20,6 @@ private:
     Renderer renderer;
     Input input;
     TextureLoader textureLoader;
+
+    //YOUR VARIABLES HERE//
 };
