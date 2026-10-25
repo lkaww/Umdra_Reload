@@ -5,15 +5,15 @@
 
 class Renderer
 {
-public:
-    void Init();
-    void BeginFrame();
+    public:
+        void Init();
+        void BeginFrame();
     
-    void DrawAnimation(Animation animation, float x, float y);
+        void DrawAnimation(Animation animation, float x, float y);
 
-    void DrawTexture(Texture* texture, float x, float y, float w, float h);
-    void DrawText(const char* text);
+        void DrawTexture(Texture* texture, float x, float y, float w, float h);
+        void DrawText(const char* text);
 
-    void EndFrame();
-    void Shutdown();
+        void EndFrame();
+        void Shutdown();
 };

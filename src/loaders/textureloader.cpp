@@ -4,14 +4,24 @@
 #include <stb_image.h>
 
 #include <psputils.h>
+#include <vector>
+#include <algorithm>
 
 #include "loaders/textureloader.h"
+#include "scene/scene_template.h"
 
 Texture* TextureLoader::LoadTexture(const char* filename) 
 {
     Texture* texture = (Texture*) calloc(1, sizeof(Texture));
 
-    texture->data = (uint32_t*) stbi_load(filename, &(texture->width), &(texture->height), NULL, STBI_rgb_alpha);
+    texture->data = 
+    (uint32_t*) stbi_load(
+        filename, 
+        &(texture->width), 
+        &(texture->height), 
+        NULL, 
+        STBI_rgb_alpha
+    );
 
     if (!texture->data)
     {
@@ -20,6 +30,8 @@ Texture* TextureLoader::LoadTexture(const char* filename)
     }
     
     sceKernelDcacheWritebackInvalidateAll();
+
+    textures.push_back(texture);
 
     return texture;
 }

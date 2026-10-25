@@ -8,7 +8,10 @@ src/core/engine.o \
 src/graphics/renderer.o \
 src/graphics/animation.o \
 src/loaders/textureloader.o \
-src/input/input.o 
+src/input/input.o \
+src/scene/scene_template.o \
+src/scene/scene1.o \
+src/scene/scene_manager.o
 
 CFLAGS = -O2 -G0 -Wall -Iinclude
 CXXFLAGS = $(CFLAGS)

@@ -1,12 +1,7 @@
 #include "core/engine.h"
-#include "graphics/vertex.h"
 
 #include <pspctrl.h>
-#include <pspgu.h>
-
-#include "graphics/animation.h"
-#include "graphics/texture.h"
-#include "loaders/textureloader.h"
+#include <psprtc.h>
 
 void Engine::Init()
 {
@@ -14,24 +9,38 @@ void Engine::Init()
 
     renderer.Init();
     input.Init();
-
-    //YOUR INIT CODE HERE//
+    sceneManager.Setup(textureLoader, input, renderer);
 }
 
 void Engine::Run()
 {
-    float deltaTime = 0.0166f;
+    //DELTA TIME INIT
+    u32 res = sceRtcGetTickResolution();
+
+    u64 curTick;
+    u64 lastTick;
+
+    sceRtcGetCurrentTick(&lastTick);
 
     while (running)
     {
         input.Update();
+
+        //DELTA TIME UPDATE
+        sceRtcGetCurrentTick(&curTick);
+
+        u64 deltaTicks = curTick - lastTick;
+
+        float deltaTime = (float)deltaTicks / (float)res;
+
+        lastTick = curTick;
 
         if (input.IsPressed(PSP_CTRL_HOME))
             running = false;
         
         renderer.BeginFrame();
 
-        //YOUR RENDER CODE HERE//
+        sceneManager.Update(deltaTime);
         
         renderer.EndFrame();
     }
@@ -39,5 +48,6 @@ void Engine::Run()
 
 void Engine::Shutdown()
 {
+    sceneManager.Shutdown();
     renderer.Shutdown();
 }

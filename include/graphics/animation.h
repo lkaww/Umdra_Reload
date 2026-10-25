@@ -5,17 +5,17 @@
 
 class Animation
 {
-public:
-    std::vector<Texture*> sprites;
-    float frameDuration;
+    public:
+        std::vector<Texture*> sprites;
+        float frameDuration;
 
-    void Update(float deltaTime);
+        void Update(float deltaTime);
 
-    Texture* GetCurrentFrame();
+        Texture* GetCurrentFrame();
 
-    void Reset();
+        void Reset();
 
-private:
-    size_t currentFrame = 0;
-    float timer = 0.0f;
+    private:
+        size_t currentFrame = 0;
+        float timer = 0.0f;
 };
